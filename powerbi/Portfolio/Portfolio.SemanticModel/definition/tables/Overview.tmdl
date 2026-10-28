@@ -1,0 +1,49 @@
+table Overview
+	lineageTag: 1ef4dc2d-d0a7-40bf-b008-98d9fbd58a53
+
+	measure 'Patients' = MAX(Overview[Patients])
+		formatString: #,0
+
+	measure 'Fields' = MAX(Overview[Fields])
+		formatString: #,0
+
+	measure 'TrainingRecords' = MAX(Overview[TrainingRecords])
+		formatString: #,0
+
+	measure 'TestRecords' = MAX(Overview[TestRecords])
+		formatString: #,0
+
+	measure 'MissingCells' = MAX(Overview[MissingCells])
+		formatString: #,0
+
+	column Patients
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Patients
+
+	column Fields
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Fields
+
+	column TrainingRecords
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: TrainingRecords
+
+	column TestRecords
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: TestRecords
+
+	column MissingCells
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: MissingCells
+
+	partition Overview = m
+		mode: import
+		source =
+				#table(type table [Patients = number, Fields = number, TrainingRecords = number, TestRecords = number, MissingCells = number], {
+					{50, 13, 40, 10, 0}
+				})

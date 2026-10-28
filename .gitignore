@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+*.joblib
+*.abf
+**/.pbi/
+03_Raw_Dataset/*.csv
+04_Clean_Dataset/*.csv
+04_Data/*.csv
+!data/*.csv

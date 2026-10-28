@@ -1,0 +1,41 @@
+table Models
+	lineageTag: 4f606fd0-9f72-4d62-bd8a-2f86a01748aa
+
+	measure 'MAE' = MAX(Models[MAE])
+		formatString: 0.00
+
+	measure 'RMSE' = MAX(Models[RMSE])
+		formatString: 0.00
+
+	column Model
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Model
+
+	column MAE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: MAE
+
+	column RMSE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RMSE
+
+	column R2
+		dataType: double
+		summarizeBy: none
+		sourceColumn: R2
+
+	column TestRecords
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: TestRecords
+
+	partition Models = m
+		mode: import
+		source =
+				#table(type table [Model = text, MAE = number, RMSE = number, R2 = number, TestRecords = number], {
+					{"Training-mean baseline", 13.3, 14.833766379446592, -0.02301652796503806, 10},
+					{"Ridge alpha 100", 13.99045675265474, 15.45370197562606, -0.11031151960327668, 10}
+				})

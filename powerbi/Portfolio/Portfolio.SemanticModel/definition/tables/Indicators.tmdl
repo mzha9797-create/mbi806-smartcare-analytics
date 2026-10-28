@@ -1,0 +1,45 @@
+table Indicators
+	lineageTag: 6fcb0e5b-1e37-4290-858d-d9c32208828a
+
+	measure 'Flagged records' = SUM(Indicators[Numerator])
+		formatString: #,0
+
+	column Indicator
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Indicator
+
+	column Numerator
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Numerator
+
+	column Denominator
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Denominator
+
+	column Rate
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Rate
+
+	column Low95
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Low95
+
+	column High95
+		dataType: double
+		summarizeBy: none
+		sourceColumn: High95
+
+	partition Indicators = m
+		mode: import
+		source =
+				#table(type table [Indicator = text, Numerator = number, Denominator = number, Rate = number, Low95 = number, High95 = number], {
+					{"Sleep below 7 h", 27, 50, 0.54, 0.4039887139915747, 0.6703034780777566},
+					{"Steps below 5000", 12, 50, 0.24, 0.1429739139699173, 0.3741268375794292},
+					{"Stress at least 70", 21, 50, 0.42, 0.2937500335471198, 0.5576655823142176},
+					{"Device fall alert", 5, 50, 0.1, 0.0434757649318904, 0.2136023143747965}
+				})

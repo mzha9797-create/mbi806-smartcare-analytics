@@ -1,0 +1,42 @@
+table AgeGroups
+	lineageTag: cc4c1073-a153-4a98-8412-31943fb352da
+
+	measure 'Mean steps' = MAX(AgeGroups[MeanSteps])
+		formatString: #,0
+
+	measure 'Mean sleep' = MAX(AgeGroups[MeanSleepHours])
+		formatString: 0.00
+
+	column AgeGroup
+		dataType: string
+		summarizeBy: none
+		sourceColumn: AgeGroup
+
+	column Records
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Records
+
+	column MeanSteps
+		dataType: double
+		summarizeBy: none
+		sourceColumn: MeanSteps
+
+	column MeanSleepHours
+		dataType: double
+		summarizeBy: none
+		sourceColumn: MeanSleepHours
+
+	column MeanStress
+		dataType: double
+		summarizeBy: none
+		sourceColumn: MeanStress
+
+	partition AgeGroups = m
+		mode: import
+		source =
+				#table(type table [AgeGroup = text, Records = number, MeanSteps = number, MeanSleepHours = number, MeanStress = number], {
+					{"50-59", 11, 7397.181818181818, 6.736363636363635, 61.72727272727273},
+					{"60-69", 14, 6711.571428571428, 7.028571428571429, 59.5},
+					{"70-79", 25, 7951.28, 6.924, 59.08}
+				})

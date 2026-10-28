@@ -1,0 +1,58 @@
+table Measurements
+	lineageTag: 1a86708a-c62f-4b7e-a5ce-3e596bf7c867
+
+	column Metric
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Metric
+
+	column Unit
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unit
+
+	column N
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: N
+
+	column Mean
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Mean
+
+	column Median
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Median
+
+	column SD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: SD
+
+	column Q1
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Q1
+
+	column Q3
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Q3
+
+	partition Measurements = m
+		mode: import
+		source =
+				#table(type table [Metric = text, Unit = text, N = number, Mean = number, Median = number, SD = number, Q1 = number, Q3 = number], {
+					{"Age", "years", 50, 67.16, 69.5, 8.970154595623633, 60.0, 75.0},
+					{"Daily steps", "steps/day", 50, 7482.26, 7783.5, 2830.756643711777, 5100.25, 9910.0},
+					{"Minimum heart rate", "bpm", 50, 58.6, 59.5, 4.110712734268045, 55.25, 62.0},
+					{"Maximum heart rate", "bpm", 50, 133.22, 137.0, 18.733675887153005, 117.75, 149.5},
+					{"Average heart rate", "bpm", 50, 82.28, 83.0, 11.124600428504277, 71.0, 92.0},
+					{"Sleep duration", "hours", 50, 6.912000000000001, 6.9, 1.3744965683211183, 5.825, 8.275},
+					{"Sleep quality", "supplied points", 50, 71.92, 71.5, 15.493039911982596, 63.0, 84.5},
+					{"Stress index", "supplied points", 50, 59.78, 65.0, 20.51409669630389, 41.5, 77.0},
+					{"Calorie burn", "supplied calories", 50, 2569.72, 2543.5, 606.6155034118332, 2107.0, 3118.75},
+					{"Health score", "supplied points", 50, 77.88, 77.5, 13.120540058571196, 68.0, 86.0}
+				})
