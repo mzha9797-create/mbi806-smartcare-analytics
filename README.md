@@ -21,7 +21,7 @@ pip install -r requirements.txt
 python src/render_public_charts.py
 ```
 
-Full pipeline inputs are intentionally not redistributed. Follow `data/README.md` to obtain authorised source data locally. Published notebooks have outputs cleared to avoid releasing record-level results. Aggregate outputs and original methods are distinct from the new public dashboard's presentation layout.
+Full pipeline inputs are intentionally not redistributed. See [data/README.md](data/README.md) for source limitations and the local input required to run the original methods. The public repository supplies Python scripts and aggregate outputs; it does not include the original row-level dataset. Aggregate outputs and original methods are distinct from the new public dashboard's presentation layout.
 
 ## Limits
 
